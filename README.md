@@ -50,7 +50,7 @@ DELETE /movies/:movieId - удаляет фильм из понравивших�
 
 ## Контакты
 - Ivan Popov
-- racioglobus@yandex.ru
+- racioglobus@ya.ru
 
 ## Ссылки на проект
 
