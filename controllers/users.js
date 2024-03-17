@@ -31,10 +31,13 @@ export const createUser = async (req, res, next) => {
       .hash(req.body.password, 10)
       .then((hash) => User.create({ ...req.body, password: hash }));
 
+    const token = generateToken({ _id: newUser._id });
+    
     return res.status(StatusCodes.CREATED).send({
       name: newUser.name,
       _id: newUser._id,
       email: newUser.email,
+      token,
     });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
