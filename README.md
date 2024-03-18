@@ -56,7 +56,7 @@ DELETE /movies/:movieId - удаляет фильм из понравивших�
 
 Адрес репозитория https://github.com/ratioglobus/movies-explorer-api/
 
-IP 62.84.127.93
+IP 158.160.59.31
 
 Frontend https://imovie.nomoredomainswork.ru/
 
