@@ -55,7 +55,7 @@ export const updateInfoProfile = async (req, res, next) => {
     const { name, about } = req.body;
     const updatedInfo = await User.findByIdAndUpdate(
       req.user._id,
-      { name, about },
+      { email, name },
       { new: true, runValidators: true },
     ).orFail();
     return res.json(updatedInfo);
