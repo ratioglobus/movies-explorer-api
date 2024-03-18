@@ -52,7 +52,7 @@ export const createUser = async (req, res, next) => {
 
 export const updateInfoProfile = async (req, res, next) => {
   try {
-    const { name, about } = req.body;
+    const { email, name } = req.body;
     const updatedInfo = await User.findByIdAndUpdate(
       req.user._id,
       { email, name },
