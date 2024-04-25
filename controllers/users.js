@@ -60,6 +60,9 @@ export const updateInfoProfile = async (req, res, next) => {
     ).orFail();
     return res.json(updatedInfo);
   } catch (error) {
+    if (error.code === 11000) {
+      return next(GeneralErrors.Conflict('Пользователь с таким адресом электронной почты уже существует'));
+    }
     if (error instanceof mongoose.Error.ValidationError) {
       return next(GeneralErrors.BadRequest('Переданы некорректные данные при создании пользователя'));
     }
