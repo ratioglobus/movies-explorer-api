@@ -70,10 +70,10 @@ export const updateInfoProfile = async (req, res, next) => {
 
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
-      return next(GeneralErrors.BadRequest('Переданы некорректные данные'));
+      return next(GeneralErrors.BadRequest('Переданы некорректные данные');
     }
     if (error instanceof mongoose.Error.DocumentNotFoundError) {
-      return next(GeneralErrors.NotFound(Пользователь по указанному ID ${req.user._id} не найден));
+      return next(GeneralErrors.NotFound(`Пользователь по указанному ID ${req.user._id} не найден`));
     }
     return next(error);
   }
