@@ -51,26 +51,17 @@ export const createUser = async (req, res, next) => {
 };
 
 export const updateInfoProfile = async (req, res, next) => {
-  const { email, name } = req.body;
   try {
-    // Проверка, не занят ли уже email другим пользователем
-    const existingUser = await User.findOne({ email: email }).exec();
-    if (existingUser && existingUser._id.toString() !== req.user._id.toString()) {
-      return next(GeneralErrors.Conflict('Этот email уже использован другим пользователем.'));
-    }
-
-    // Обновление информации пользователя
+    const { email, name } = req.body;
     const updatedInfo = await User.findByIdAndUpdate(
       req.user._id,
       { email, name },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     ).orFail();
-
     return res.json(updatedInfo);
-
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
-      return next(GeneralErrors.BadRequest('Переданы некорректные данные');
+      return next(GeneralErrors.BadRequest('Переданы некорректные данные при создании пользователя'));
     }
     if (error instanceof mongoose.Error.DocumentNotFoundError) {
       return next(GeneralErrors.NotFound(`Пользователь по указанному ID ${req.user._id} не найден`));
